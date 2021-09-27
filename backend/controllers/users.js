@@ -1,5 +1,5 @@
 // this controller uses if statements to catch null values
-
+const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 
 const getUsers = (req, res) => {
@@ -25,8 +25,10 @@ const getUserById = (req, res) => {
 };
 
 const createUser = (req, res) => {
-  const { name, about, avatar } = req.body;
-  User.create({ name, about, avatar })
+  const { name, about, avatar, email, password } = req.body;
+  bcrypt
+    .hash(password, 10)
+    .then((hash) => User.create({ name, about, avatar, email, password: hash }))
     .then((user) => {
       res.send({ data: user });
     })
@@ -82,9 +84,7 @@ const updateUser = (req, res) => {
       if (err.name === 'ValidationError') {
         const errors = Object.keys(err.errors);
         return res.status(400).send({
-          message: `Invalid ${errors.join(' and ')} input${
-            errors.length > 1 ? 's' : ''
-          }`,
+          message: `Invalid ${errors.join(' and ')} input${errors.length > 1 ? 's' : ''}`,
         });
       }
       return res.status(500).send({ message: `Server Error: ${err}` });
