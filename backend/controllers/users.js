@@ -122,10 +122,25 @@ const updateUserAvatar = (req, res) => {
     });
 };
 
+const login = (req, res) => {
+  const { email, password } = req.body;
+  // check if the user exists
+  return User.findUserByCredentials({ email, password })
+    .then((user) => {
+      // pause here
+    })
+    .catch((err) => {
+      res.status(401).send({ message: err.message });
+    });
+  // if it does, hash the password and see if it matches
+  // if it matches, return the JWT that parses the ID
+};
+
 module.exports = {
   getUsers,
   getUserById,
   createUser,
   updateUser,
   updateUserAvatar,
+  login,
 };
