@@ -1,0 +1,33 @@
+{
+  "name": "around-express",
+  "version": "1.0.0",
+  "description": "The backend code for the Around React project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/McCambley/around-express.git"
+  },
+  "author": "Jake McCambley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/McCambley/around-express/issues"
+  },
+  "homepage": "https://github.com/McCambley/around-express#readme",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.0",
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "mongoose": "^6.0.2"
+  }
+}
