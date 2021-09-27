@@ -1,21 +1,21 @@
 const mongoose = require('mongoose');
+
 const validator = require('validator');
 
 const userSchema = new mongoose.Schema({
   name: {
-    required: true,
     type: String,
     minlength: 2,
     maxlength: 30,
+    default: 'Jacques Cousteau',
   },
   about: {
-    required: true,
     type: String,
     minlength: 2,
     maxlength: 30,
+    default: 'Explorer',
   },
   avatar: {
-    required: true,
     type: String,
     // validation for links to avatar images
     validate: {
@@ -24,6 +24,7 @@ const userSchema = new mongoose.Schema({
       },
       message: (input) => `${input.value} is not a valid URL`,
     },
+    default: 'https://pictures.s3.yandex.net/resources/avatar_1604080799.jpg',
   },
   email: {
     required: true,
