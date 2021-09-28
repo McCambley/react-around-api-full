@@ -127,13 +127,17 @@ const login = (req, res) => {
   // check if the user exists
   return User.findUserByCredentials({ email, password })
     .then((user) => {
-      // pause here
+      // if it matches, return the JWT that parses the ID
+      const token = jwt.sign(
+        { _id: user._id },
+        '3b60b8cecc1f5717043770b5861d3931b15a34063e5995aa16e1455b9afa506b',
+        { expiresIn: '7d' }
+      );
+      res.send({ token });
     })
     .catch((err) => {
       res.status(401).send({ message: err.message });
     });
-  // if it does, hash the password and see if it matches
-  // if it matches, return the JWT that parses the ID
 };
 
 module.exports = {
