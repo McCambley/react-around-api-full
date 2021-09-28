@@ -76,6 +76,7 @@ const createUser = (req, res) => {
 const updateUser = (req, res) => {
   const { name, about } = req.body;
   User.findByIdAndUpdate(
+    // req.user_id is set during authorization
     req.user._id, // id of user to update
     {
       // new information to pass
@@ -110,6 +111,7 @@ const updateUser = (req, res) => {
 const updateUserAvatar = (req, res) => {
   const { avatar } = req.body;
   User.findByIdAndUpdate(
+    // req.user_id is set during authorization
     req.user._id, // id of user to update
     {
       avatar, // new information to pass

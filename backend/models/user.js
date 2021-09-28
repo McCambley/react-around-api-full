@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
     // validation for links to avatar images
     validate: {
       validator(input) {
-        return /https?:\/\/.*(\.com|\.photos|\.ly).*/gm.test(input);
+        return /https?:\/\/.*(\.com|\.photos|\.net|\.ly).*/gm.test(input);
       },
       message: (input) => `${input.value} is not a valid URL`,
     },

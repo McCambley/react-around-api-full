@@ -23,16 +23,7 @@ app.use(express.json());
 app.post('/signin', login);
 app.post('/signup', createUser);
 
-// temporary authorization middleware
-app.use((req, res, next) => {
-  req.user = {
-    _id: '613222538f037f837e9dfd68', // "Jake McCambley"
-  };
-
-  next();
-});
-
-app.use(auth);
+// app.use(auth);
 
 app.use('/cards', cards);
 app.use('/users', users);
