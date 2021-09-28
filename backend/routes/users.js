@@ -12,6 +12,8 @@ router.get('/', getUsers);
 
 router.get('/:userId', getUserById);
 
+router.get('/me', getCurrentUser);
+
 // router.post('/', createUser);
 
 router.patch('/me', updateUser);

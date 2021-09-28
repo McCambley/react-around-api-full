@@ -24,6 +24,22 @@ const getUserById = (req, res) => {
     });
 };
 
+const getCurrentUser = (req, res) => {
+  User.findById(req.user._id)
+    .then((user) => {
+      if (!user) {
+        return res.status(404).send({ message: 'User not found' });
+      }
+      return res.send({ data: user });
+    })
+    .catch((err) => {
+      if (err.name === 'CastError') {
+        return res.status(400).send({ message: 'Invalid userId' });
+      }
+      return res.status(500).send({ message: `Server Error: ${err}` });
+    });
+};
+
 const createUser = (req, res) => {
   const { name, about, avatar, email, password } = req.body;
   bcrypt
@@ -143,6 +159,7 @@ const login = (req, res) => {
 module.exports = {
   getUsers,
   getUserById,
+  getCurrentUser,
   createUser,
   updateUser,
   updateUserAvatar,
