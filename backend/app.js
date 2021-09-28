@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cards = require('./routes/cards');
 const users = require('./routes/users');
 const error = require('./routes/error');
+const { createUser, login } = require('./controllers/users');
 
 const { PORT = 3000 } = process.env;
 const app = express();
@@ -17,6 +18,9 @@ mongoose.connect('mongodb://localhost:27017/aroundb', {
 
 app.use(helmet());
 app.use(express.json());
+
+app.post('/signin', login);
+app.post('/signup', createUser);
 
 // temporary authorization middleware
 app.use((req, res, next) => {
