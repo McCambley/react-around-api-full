@@ -5,6 +5,7 @@ const cards = require('./routes/cards');
 const users = require('./routes/users');
 const error = require('./routes/error');
 const { createUser, login } = require('./controllers/users');
+const auth = require('./middleware/auth');
 
 const { PORT = 3000 } = process.env;
 const app = express();
@@ -30,6 +31,8 @@ app.use((req, res, next) => {
 
   next();
 });
+
+app.use(auth);
 
 app.use('/cards', cards);
 app.use('/users', users);
