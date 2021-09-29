@@ -1,6 +1,7 @@
 // this controller uses if statements to catch null values
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
 
 const getUsers = (req, res) => {
   User.find({})
@@ -142,8 +143,9 @@ const updateUserAvatar = (req, res) => {
 
 const login = (req, res) => {
   const { email, password } = req.body;
+  // console.log({ email, password });
   // check if the user exists
-  return User.findUserByCredentials({ email, password })
+  return User.findUserByCredentials(email, password)
     .then((user) => {
       // if it matches, return the JWT that parses the ID
       const token = jwt.sign(

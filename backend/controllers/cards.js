@@ -32,26 +32,26 @@ const createCard = (req, res) => {
 const deleteCard = (req, res) => {
   // find card
   Card.findById(req.params.cardId)
+    // .populate({ path: 'owner', populate: { path: '_id' } })
     .then((card) => {
-      if (!(card.owner === req.user._id)) {
+      if (!(card.owner.toString() === req.user._id)) {
         return res.status(403).send({ message: 'Action forbidden' });
       }
-    })
-    .catch((err) => {
-      if (err.name === 'CastError') {
-        return res.status(400).send({ message: 'Invalid CardId' });
-      }
-      if (err.name === 'DocumentNotFoundError') {
-        return res.status(404).send({ message: 'Card not found' });
-      }
-      return res.status(500).send({ message: `Server Error: ${err}` });
-    });
-
-  // delete card if the above passes
-  Card.findByIdAndDelete(req.params.cardId)
-    .orFail()
-    .then((card) => {
-      res.send({ data: card });
+      // delete card if the above passes
+      Card.findByIdAndDelete(req.params.cardId)
+        .orFail()
+        .then((card) => {
+          res.send({ data: card });
+        })
+        .catch((err) => {
+          if (err.name === 'CastError') {
+            return res.status(400).send({ message: 'Invalid CardId' });
+          }
+          if (err.name === 'DocumentNotFoundError') {
+            return res.status(404).send({ message: 'Card not found' });
+          }
+          return res.status(500).send({ message: `Server Error: ${err}` });
+        });
     })
     .catch((err) => {
       if (err.name === 'CastError') {
