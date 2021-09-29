@@ -1,0 +1,17 @@
+.popup__input {
+  font-size: 14px;
+  line-height: 17px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
+  padding-left: 4px;
+  height: 28px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 5px;
+}
+
+.popup__input:last-child {
+  margin-bottom: 0px;
+}

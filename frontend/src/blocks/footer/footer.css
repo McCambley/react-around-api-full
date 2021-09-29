@@ -1,0 +1,19 @@
+@import url(./__copyright/footer__copyright.css);
+
+.footer {
+  color: #545454;
+  max-width: 880px;
+  margin: 0 auto 0;
+}
+
+@media (max-width: 1024px) {
+  .footer {
+    padding-left: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding-left: 20px;
+  }
+}

@@ -1,0 +1,29 @@
+.auth__input {
+  margin-bottom: 30px;
+  background-color: transparent;
+  color: #cccccc;
+  font-size: 14px;
+  line-height: 16px;
+  border: none;
+  border-bottom: 2px solid #cccccc;
+  padding: 0;
+  padding-bottom: 12px;
+  transition: all 0.15s linear;
+}
+
+/* ehh... */
+.auth__input:focus-visible {
+  outline: 2px solid #ccc;
+  color: #fff;
+  border: none;
+  padding-top: 6px;
+  padding-left: 4px;
+  padding-bottom: 6px;
+}
+
+.auth__input:last-of-type {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+}

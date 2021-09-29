@@ -1,0 +1,8 @@
+.header__dropdown_open {
+  max-height: 142px;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  padding: 40px 16px;
+  opacity: 1;
+  color: #fff;
+  /* filter: blur(0); */
+}

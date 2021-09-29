@@ -1,0 +1,30 @@
+/* elements */
+@import url(./__dropdown-email/header__dropdown-email.css);
+@import url(./__dropdown-link/header__dropdown-link.css);
+@import url(./__dropdown/header__dropdown.css);
+@import url(./__email/header____emaill.css);
+@import url(./__hamburger/header__hamburger.css);
+@import url(./__hamburger-icon/header__hamburger-icon.css);
+@import url(./__link/header__link.css);
+@import url(./__nav-container/header__nav-container.css);
+
+/* modifiers */
+@import url(./__dropdown/_open/header__dropdown_open.css);
+@import url(./__link/_loggedout/header__link_loggedout.css);
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  /* min-height: 75px; */
+  max-width: 880px;
+  margin: 0 auto 0;
+  padding: 40px 0px;
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 28px 0;
+  }
+}

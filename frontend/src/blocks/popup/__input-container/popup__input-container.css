@@ -1,0 +1,13 @@
+.popup__input-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-bottom: 48px;
+}
+
+@media (max-width: 480px) {
+  .popup__input-container {
+    padding-bottom: 46px;
+  }
+}

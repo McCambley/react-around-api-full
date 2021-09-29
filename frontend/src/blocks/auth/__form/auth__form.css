@@ -1,0 +1,13 @@
+.auth__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 358px;
+  max-width: 100%;
+}
+
+@media (max-width: 360px) {
+  .auth__form {
+    width: 100%;
+  }
+}

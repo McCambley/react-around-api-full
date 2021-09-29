@@ -1,0 +1,9 @@
+.header__dropdown-link {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.3s ease;
+}
+
+.header__dropdown-link:hover {
+  opacity: 0.6;
+}

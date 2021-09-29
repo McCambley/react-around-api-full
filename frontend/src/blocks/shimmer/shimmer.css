@@ -1,0 +1,26 @@
+@keyframes shimmerSlide {
+  0% {
+    background-position: -700px 0;
+  }
+
+  100% {
+    background-position: 700px 0;
+  }
+}
+
+.shimmer {
+  background-color: #000;
+  color: transparent;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  background-image: linear-gradient(to right, #000000 0%, #0c0c0c 25%, #0e0e0e 50%, #0c0c0c 75%, #000000 100%);
+  /* background-image: linear-gradient(to right, #1b5085 0%, #aa9a0c 20%, #080b0e 40%, #f71143 100%); */
+  background-repeat: no-repeat;
+  background-size: 768px 400px;
+  background-position: center;
+  animation: shimmerSlide 02s ease-in-out infinite forwards;
+  transform: scale(1.1);
+  /* display: inline-block;
+  position: relative;  */
+}

@@ -1,0 +1,22 @@
+@import url(./__heart/element__heart.css);
+@import url(./__image/element__image.css);
+@import url(./__name-box/element__name-box.css);
+@import url(./__name/element__name.css);
+@import url(./__delete/element__delete.css);
+@import url(./__like-container/element__like-container.css);
+@import url(./__likes/element__likes.css);
+@import url(./__delete/_hidden/element__delete_hidden.css);
+@import url(./__delete/_visible/element__delete_visible.css);
+
+/* modifiers */
+@import url(./__heart/_liked/element__heart_liked.css);
+
+.element {
+  /* background-color: #000; */
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}

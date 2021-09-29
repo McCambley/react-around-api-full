@@ -1,0 +1,10 @@
+.auth__input-container {
+  margin-bottom: 216px;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 768px) {
+  .auth__input-container {
+    margin-bottom: 174px;
+  }
+}
