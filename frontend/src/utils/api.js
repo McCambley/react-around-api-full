@@ -17,7 +17,7 @@ class Api {
       headers: {
         authorization: this._auth,
       },
-    }).then(res => this._checkResponse(res));
+    }).then((res) => this._checkResponse(res));
   }
 
   getGroupCards() {
@@ -25,7 +25,7 @@ class Api {
       headers: {
         authorization: this._auth,
       },
-    }).then(res => this._checkResponse(res));
+    }).then((res) => this._checkResponse(res));
   }
 
   updateProfile({ name, about }) {
@@ -39,7 +39,7 @@ class Api {
         name: name,
         about: about,
       }),
-    }).then(res => this._checkResponse(res));
+    }).then((res) => this._checkResponse(res));
   }
 
   updateAvatar({ avatar }) {
@@ -50,7 +50,7 @@ class Api {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ avatar: avatar }),
-    }).then(res => this._checkResponse(res));
+    }).then((res) => this._checkResponse(res));
   }
 
   addCard({ name, link }) {
@@ -64,7 +64,7 @@ class Api {
         name,
         link,
       }),
-    }).then(res => this._checkResponse(res));
+    }).then((res) => this._checkResponse(res));
   }
 
   changeLikeCardStatus(cardId, isLiked) {
@@ -75,7 +75,7 @@ class Api {
         authorization: this._auth,
         'Content-Type': 'application/json',
       },
-    }).then(res => this._checkResponse(res));
+    }).then((res) => this._checkResponse(res));
   }
 
   likeCard(cardId) {
@@ -85,7 +85,7 @@ class Api {
         authorization: this._auth,
         'Content-Type': 'application/json',
       },
-    }).then(res => this._checkResponse(res));
+    }).then((res) => this._checkResponse(res));
   }
 
   removeLike(cardId) {
@@ -95,7 +95,7 @@ class Api {
         authorization: this._auth,
         'Content-Type': 'application/json',
       },
-    }).then(res => this._checkResponse(res));
+    }).then((res) => this._checkResponse(res));
   }
 
   deleteCard(cardId) {
@@ -105,10 +105,17 @@ class Api {
         authorization: this._auth,
         'Content-Type': 'application/json',
       },
-    }).then(res => this._checkResponse(res));
+    }).then((res) => this._checkResponse(res));
   }
 }
 
+// old api
+// const api = new Api({
+//   baseUrl: 'https://around.nomoreparties.co/v1/group-12',
+//   authorization: 'd45050bb-6054-461f-a7d7-f299e145a1f0',
+// });
+
+// new api with homemade backend
 const api = new Api({
   baseUrl: 'https://around.nomoreparties.co/v1/group-12',
   authorization: 'd45050bb-6054-461f-a7d7-f299e145a1f0',
