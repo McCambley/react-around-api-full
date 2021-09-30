@@ -5,8 +5,9 @@ const Card = require('../models/card');
 const getCards = (req, res) => {
   Card.find({})
     .populate(['owner', 'likes'])
+    .sort('createdAt')
     .then((cards) => {
-      res.send({ data: cards });
+      res.send({ data: cards.reverse() });
     })
     .catch((err) => {
       res.status(500).send({ message: `Server Error: ${err}` });
@@ -16,6 +17,10 @@ const getCards = (req, res) => {
 const createCard = (req, res) => {
   const { name, link } = req.body;
   Card.create({ name, link, owner: req.user._id })
+    // .populate('owner')
+    .then((card) => {
+      return card.populate('owner');
+    })
     .then((card) => {
       res.send({ data: card });
     })
@@ -67,6 +72,7 @@ const deleteCard = (req, res) => {
 const likeCard = (req, res) => {
   Card.findByIdAndUpdate(req.params.cardId, { $addToSet: { likes: req.user._id } }, { new: true })
     .orFail()
+    .populate('likes')
     .then((card) => {
       res.send({ data: card });
     })

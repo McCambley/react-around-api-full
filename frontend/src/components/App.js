@@ -53,23 +53,25 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    api
-      .getGroupCards()
-      .then((data) => {
-        updateCards(data);
-      })
-      .catch((err) => console.error(`Problem fetching cards cards: ${err}`));
-  }, []);
+    loggedIn &&
+      api
+        .getGroupCards()
+        .then((data) => {
+          updateCards(data.data);
+        })
+        .catch((err) => console.error(`Problem fetching cards cards: ${err}`));
+  }, [loggedIn]);
 
   React.useEffect(() => {
-    api
-      .getUserInfo()
-      .then((res) => {
-        updateCurrentUser(res);
-        updateLoading(false);
-      })
-      .catch((err) => console.error(`Problem fetching user information: ${err}`));
-  }, []);
+    loggedIn &&
+      api
+        .getUserInfo()
+        .then((res) => {
+          updateCurrentUser(res.data);
+          updateLoading(false);
+        })
+        .catch((err) => console.error(`Problem fetching user information: ${err}`));
+  }, [loggedIn]);
 
   React.useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -128,7 +130,7 @@ function App() {
     api
       .updateProfile(userData)
       .then((res) => {
-        updateCurrentUser(res);
+        updateCurrentUser(res.data);
         closeAllPopups();
         updateSubmitPendingStatus(false);
       })
@@ -140,7 +142,7 @@ function App() {
     api
       .updateAvatar(userData)
       .then((res) => {
-        updateCurrentUser(res);
+        updateCurrentUser(res.data);
         closeAllPopups();
         updateSubmitPendingStatus(false);
       })
@@ -152,7 +154,9 @@ function App() {
     api
       .changeLikeCardStatus(card._id, isLiked)
       .then((likedCard) => {
-        updateCards(cards.map((cardItem) => (cardItem._id === card._id ? likedCard : cardItem)));
+        updateCards(
+          cards.map((cardItem) => (cardItem._id === card._id ? likedCard.data : cardItem))
+        );
       })
       .catch((err) => console.error(`Problem updating 'like' status: ${err}`));
   }
@@ -174,7 +178,7 @@ function App() {
     api
       .addCard(card)
       .then((newCard) => {
-        updateCards([newCard, ...cards]);
+        updateCards([newCard.data, ...cards]);
         closeAllPopups();
         updateSubmitPendingStatus(false);
       })

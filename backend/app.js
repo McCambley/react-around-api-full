@@ -1,6 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const cards = require('./routes/cards');
 const users = require('./routes/users');
 const error = require('./routes/error');
@@ -19,6 +20,9 @@ mongoose.connect('mongodb://localhost:27017/aroundb', {
 
 app.use(helmet());
 app.use(express.json());
+
+app.use(cors());
+app.options('*', cors());
 
 app.post('/signin', login);
 app.post('/signup', createUser);

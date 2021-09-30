@@ -4,8 +4,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 export default function Card({ cardData, onCardClick, onCardLike, onCardDelete }) {
   const currentUser = React.useContext(CurrentUserContext);
   const isOwn = cardData.owner._id === currentUser._id;
-  const isLiked = cardData.likes.some(like => like._id === currentUser._id);
-
+  const isLiked = cardData.likes.some((like) => like._id === currentUser._id);
   function handleClick() {
     onCardClick(cardData);
   }
@@ -17,10 +16,14 @@ export default function Card({ cardData, onCardClick, onCardLike, onCardDelete }
   function handleDeleteClick() {
     onCardDelete(cardData);
   }
-
   return (
     <article className="element">
-      <img className="element__image" src={cardData.link} alt={`${cardData.name} taken by ${cardData.owner.name}`} onClick={handleClick} />
+      <img
+        className="element__image"
+        src={cardData.link}
+        alt={`${cardData.name} taken by ${cardData.owner.name}`}
+        onClick={handleClick}
+      />
       <div className="element__name-box">
         <h2 className="element__name">{cardData.name}</h2>
         <div className="element__like-container">
@@ -29,7 +32,8 @@ export default function Card({ cardData, onCardClick, onCardLike, onCardDelete }
             name="Like image"
             onClick={handleLike}
             className={`element__heart ${isLiked && 'element__heart_liked'}`}
-            aria-label="Like photo"></button>
+            aria-label="Like photo"
+          ></button>
           <p className="element__likes">{cardData.likes.length}</p>
         </div>
       </div>
@@ -37,8 +41,11 @@ export default function Card({ cardData, onCardClick, onCardLike, onCardDelete }
         type="button"
         name="Delete image"
         onClick={handleDeleteClick}
-        className={`element__delete ${isOwn ? 'element__delete_visible' : 'element__delete_hidden'}`}
-        aria-label="Delete photo"></button>
+        className={`element__delete ${
+          isOwn ? 'element__delete_visible' : 'element__delete_hidden'
+        }`}
+        aria-label="Delete photo"
+      ></button>
     </article>
   );
 }
