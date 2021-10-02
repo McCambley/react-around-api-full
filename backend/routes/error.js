@@ -1,7 +1,7 @@
-const route = require('express').Router();
+// const route = require('express').Router();
 
-route.use((req, res) => {
-  res.status(404).send({ message: 'Requested resource not found' });
-});
+// route.use((req, res) => {
+//   res.status(404).send({ message: 'Requested resource not found' });
+// });
 
-module.exports = route;
+// module.exports = route;
