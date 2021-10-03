@@ -117,7 +117,7 @@ class Api {
 
 // new api with homemade backend
 const api = new Api({
-  baseUrl: 'http://localhost:3001',
+  baseUrl: 'http://localhost:3000',
   // authorization: 'd45050bb-6054-461f-a7d7-f299e145a1f0',
 });
 
