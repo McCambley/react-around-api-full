@@ -2,11 +2,13 @@ const express = require('express');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const { errors } = require('celebrate');
 const cards = require('./routes/cards');
 const users = require('./routes/users');
+const signin = require('./routes/signin');
+const signup = require('./routes/signup');
 // const error = require('./routes/error');
 const error = require('./middleware/error');
-const { createUser, login } = require('./controllers/users');
 const auth = require('./middleware/auth');
 
 const { PORT = 3001 } = process.env;
@@ -25,14 +27,20 @@ app.use(express.json());
 app.use(cors());
 app.options('*', cors());
 
-app.post('/signin', login);
-app.post('/signup', createUser);
+app.use('/signin', signin);
+app.use('/signup', signup);
+// app.post('/signin', login);
+// app.post('/signup', createUser);
 
 app.use(auth);
 
 app.use('/cards', cards);
 app.use('/users', users);
 
+// celebrate
+app.use(errors());
+
+// middleware
 app.use(error);
 
 app.listen(PORT, () => {

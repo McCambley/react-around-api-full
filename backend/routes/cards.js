@@ -1,21 +1,72 @@
 const router = require('express').Router();
+const { celebrate, Joi } = require('celebrate');
+const validator = require('validator');
+const { getCards, createCard, deleteCard, likeCard, unlikeCard } = require('../controllers/cards');
 
-const {
-  getCards,
-  createCard,
-  deleteCard,
-  likeCard,
-  unlikeCard,
-} = require('../controllers/cards');
+function validateUrl(string) {
+  if (!validator.isURL(string)) {
+    throw new Error('Invalid URL');
+  }
+  return string;
+}
 
-router.get('/', getCards);
+const newCardValidation = Joi.object().keys({
+  name: Joi.string().required().min(2).max(30),
+  link: Joi.string().required().custom(validateUrl),
+});
 
-router.post('/', createCard);
+const authValidation = Joi.object()
+  .keys({
+    authorization: Joi.string().required(),
+  })
+  .unknown(true);
 
-router.delete('/:cardId', deleteCard);
+const cardIdValidation = Joi.object().keys({
+  cardId: Joi.string().alphanum().length(24),
+});
 
-router.put('/:cardId/likes', likeCard);
+router.get(
+  '/',
+  celebrate({
+    headers: authValidation,
+  }),
+  getCards
+);
 
-router.delete('/:cardId/likes', unlikeCard);
+router.post(
+  '/',
+  celebrate({
+    body: newCardValidation,
+    headers: authValidation,
+  }),
+  createCard
+);
+
+router.delete(
+  '/:cardId',
+  celebrate({
+    params: cardIdValidation,
+    headers: authValidation,
+  }),
+  deleteCard
+);
+
+router.put(
+  '/:cardId/likes',
+  celebrate({
+    params: cardIdValidation,
+    headers: authValidation,
+  }),
+  likeCard
+);
+
+router.delete(
+  '/:cardId/likes',
+  celebrate({
+    params: cardIdValidation,
+    headers: authValidation,
+  }),
+  unlikeCard
+);
 
 module.exports = router;

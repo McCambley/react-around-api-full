@@ -17,9 +17,7 @@ const createCard = (req, res, next) => {
   const { name, link } = req.body;
   Card.create({ name, link, owner: req.user._id })
     // .populate('owner')
-    .then((card) => {
-      return card.populate('owner');
-    })
+    .then((card) => card.populate('owner'))
     .then((card) => {
       res.send({ data: card });
     })
@@ -48,8 +46,8 @@ const deleteCard = (req, res, next) => {
       // delete card if the above passes
       Card.findByIdAndDelete(req.params.cardId)
         .orFail()
-        .then((card) => {
-          res.send({ data: card });
+        .then((deletedCard) => {
+          res.send({ data: deletedCard });
         })
         .catch((err) => {
           if (err.name === 'CastError') {
@@ -76,6 +74,7 @@ const likeCard = (req, res, next) => {
   Card.findByIdAndUpdate(req.params.cardId, { $addToSet: { likes: req.user._id } }, { new: true })
     .orFail()
     .populate('likes')
+    .populate('owner')
     .then((card) => {
       res.send({ data: card });
     })
@@ -93,6 +92,8 @@ const likeCard = (req, res, next) => {
 const unlikeCard = (req, res, next) => {
   Card.findByIdAndUpdate(req.params.cardId, { $pull: { likes: req.user._id } }, { new: true })
     .orFail()
+    .populate('likes')
+    .populate('owner')
     .then((card) => {
       res.send({ data: card });
     })

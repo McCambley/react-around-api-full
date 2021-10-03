@@ -11,12 +11,12 @@ const cardSchema = new mongoose.Schema({
     type: String,
     required: true,
     // validation for links leading to images
-    validate: {
-      validator(input) {
-        return /https?:\/\/.*(\.com|\.photos|\.ly).*/gm.test(input);
-      },
-      message: (input) => `${input.value} is not a valid URL`,
-    },
+    // validate: {
+    //   validator(input) {
+    //     return /https?:\/\/.*(\.com|\.photos|\.ly).*/gm.test(input);
+    //   },
+    //   message: (input) => `${input.value} is not a valid URL`,
+    // },
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,

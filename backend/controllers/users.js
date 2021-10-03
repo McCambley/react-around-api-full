@@ -1,7 +1,7 @@
 // this controller uses if statements to catch null values
 const bcrypt = require('bcryptjs');
-const User = require('../models/user');
 const jwt = require('jsonwebtoken');
+const User = require('../models/user');
 const ErrorHandler = require('../helpers/error');
 
 const getUsers = (req, res, next) => {
@@ -147,7 +147,6 @@ const updateUserAvatar = (req, res, next) => {
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
-  // console.log({ email, password });
   // check if the user exists
   return User.findUserByCredentials(email, password)
     .then((user) => {
@@ -159,9 +158,7 @@ const login = (req, res, next) => {
       );
       res.send({ token });
     })
-    .catch((err) => {
-      return next(new ErrorHandler(401, err.message));
-    });
+    .catch((err) => next(new ErrorHandler(401, err.message)));
 };
 
 module.exports = {

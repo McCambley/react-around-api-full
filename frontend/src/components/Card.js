@@ -4,6 +4,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 export default function Card({ cardData, onCardClick, onCardLike, onCardDelete }) {
   const currentUser = React.useContext(CurrentUserContext);
   const isOwn = cardData.owner._id === currentUser._id;
+  // const isOwn = (cardData.owner._id || cardData.owner) === currentUser._id;
   const isLiked = cardData.likes.some((like) => like._id === currentUser._id);
   function handleClick() {
     onCardClick(cardData);
