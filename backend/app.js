@@ -10,6 +10,7 @@ const signup = require('./routes/signup');
 // const error = require('./routes/error');
 const error = require('./middleware/error');
 const auth = require('./middleware/auth');
+const { requestLogger, errorLogger } = require('./middleware/logger');
 
 const { PORT = 3001 } = process.env;
 const app = express();
@@ -27,15 +28,19 @@ app.use(express.json());
 app.use(cors());
 app.options('*', cors());
 
+// log requests
+app.use(requestLogger);
+
 app.use('/signin', signin);
 app.use('/signup', signup);
-// app.post('/signin', login);
-// app.post('/signup', createUser);
 
 app.use(auth);
 
 app.use('/cards', cards);
 app.use('/users', users);
+
+// logs
+app.use(errorLogger);
 
 // celebrate
 app.use(errors());
