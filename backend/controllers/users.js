@@ -1,8 +1,9 @@
-// this controller uses if statements to catch null values
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const ErrorHandler = require('../helpers/error');
+
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 const getUsers = (req, res, next) => {
   User.find({})
@@ -153,7 +154,7 @@ const login = (req, res, next) => {
       // if it matches, return the JWT that parses the ID
       const token = jwt.sign(
         { _id: user._id },
-        '3b60b8cecc1f5717043770b5861d3931b15a34063e5995aa16e1455b9afa506b',
+        NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
         { expiresIn: '7d' }
       );
       res.send({ token });

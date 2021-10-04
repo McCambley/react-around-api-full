@@ -3,6 +3,7 @@ const helmet = require('helmet');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const { errors } = require('celebrate');
+require('dotenv').config();
 const cards = require('./routes/cards');
 const users = require('./routes/users');
 const signin = require('./routes/signin');
