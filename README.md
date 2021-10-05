@@ -1,6 +1,10 @@
-# react-around-api-full
-The API of "Around the U.S." with authorization and registration handled by the back-end server.
+# Around the U.S.
 
-This repository contains the full API of "Around the U.S." project that features user authorization and user registration and handles cards and users. Please add to this readme:
-* a link to repository with the complete React application which uses this API;
-* a link to the website that hosts your API.
+This repository contains:
+
+- The **backend** API of "Around the U.S." with authorization and registration handled by the back-end server.
+- The **frontend** React Application which uses this API
+
+_note: previous iterations of this project's front end and backend exist in other repositories. Those versions are not up to date. Only this repository contains the most up to date iteration of both the frontend and backend_.
+
+## [View the project live here! 🎉](https://mccambley.students.nomoreparties.site/)
