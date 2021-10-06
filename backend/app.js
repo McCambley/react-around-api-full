@@ -4,24 +4,26 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const { errors } = require('celebrate');
 require('dotenv').config();
+const rateLimit = require('express-rate-limit');
 const cards = require('./routes/cards');
 const users = require('./routes/users');
 const signin = require('./routes/signin');
 const signup = require('./routes/signup');
-// const error = require('./routes/error');
 const error = require('./middleware/error');
 const auth = require('./middleware/auth');
+
 const { requestLogger, errorLogger } = require('./middleware/logger');
 
 const { PORT = 3000 } = process.env;
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/aroundb', {
-  // useNewUrlParser: true, // legacy since Mongoose 7.0
-  // useCreateIndex: true, // legacy since Mongoose 7.0
-  // useFindAndModify: false, // legacy since Mongoose 7.0
-  // useUnifiedTopology: true, // legacy since Mongoose 7.0
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: 'Too many requests have been made to the server, please try again later.',
 });
+
+mongoose.connect('mongodb://localhost:27017/aroundb', {});
 
 app.use(helmet());
 app.use(express.json());
@@ -32,6 +34,8 @@ app.options('*', cors());
 // log requests
 app.use(requestLogger);
 
+// apply rate limit to all requests
+app.use(limiter);
 // temporary crash test
 app.get('/crash-test', () => {
   setTimeout(() => {
