@@ -49,7 +49,9 @@ const createUser = (req, res, next) => {
     .hash(password, 10)
     .then((hash) => User.create({ name, about, avatar, email, password: hash }))
     .then((user) => {
-      res.status(201).send({ data: user });
+      res.status(201).send({
+        data: { name: user.name, email: user.email, about: user.about, avatar: user.avatar },
+      });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -73,6 +75,9 @@ const createUser = (req, res, next) => {
             } input${isMultiple ? 's' : ''}`
           )
         );
+      }
+      if (err.code === 11000) {
+        return next(new ErrorHandler(409, 'Conflict'));
       }
       return next(err);
     });

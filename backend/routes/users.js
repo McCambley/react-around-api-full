@@ -53,8 +53,6 @@ router.get(
   getUserById
 );
 
-// router.post('/', createUser);
-
 router.patch(
   '/me',
   celebrate({

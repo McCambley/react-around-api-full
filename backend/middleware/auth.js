@@ -6,8 +6,6 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;
   if (!authorization || !authorization.startsWith('Bearer ')) {
-    // return res.status(401).send({ message: 'Authorization required' });
-    // console.log('here');
     return next(new ErrorHandler(401, 'Authorization required'));
   }
 
