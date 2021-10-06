@@ -56,13 +56,14 @@ app.use(auth);
 app.use('/cards', cards);
 app.use('/users', users);
 
+app.use('*', notFound);
+
 // logs
 app.use(errorLogger);
 
 // celebrate
 app.use(errors());
 
-app.use('*', notFound);
 // middleware
 app.use(error);
 
