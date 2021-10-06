@@ -22,7 +22,7 @@ const authValidation = Joi.object()
   .unknown(true);
 
 const cardIdValidation = Joi.object().keys({
-  cardId: Joi.string().alphanum().length(24),
+  cardId: Joi.string().hex().length(24),
 });
 
 router.get(
