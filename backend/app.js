@@ -5,10 +5,15 @@ const cors = require('cors');
 const { errors } = require('celebrate');
 require('dotenv').config();
 const rateLimit = require('express-rate-limit');
+
+// routes
 const cards = require('./routes/cards');
 const users = require('./routes/users');
+const notFound = require('./routes/notFound');
 const signin = require('./routes/signin');
 const signup = require('./routes/signup');
+
+// middleware
 const error = require('./middleware/error');
 const auth = require('./middleware/auth');
 
@@ -57,6 +62,7 @@ app.use(errorLogger);
 // celebrate
 app.use(errors());
 
+app.use('*', notFound);
 // middleware
 app.use(error);
 
