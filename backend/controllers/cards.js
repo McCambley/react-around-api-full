@@ -38,6 +38,7 @@ const createCard = (req, res, next) => {
 const deleteCard = (req, res, next) => {
   // find card
   Card.findById(req.params.cardId)
+    .orFail()
     // .populate({ path: 'owner', populate: { path: '_id' } })
     .then((card) => {
       if (!(card.owner.toString() === req.user._id)) {
