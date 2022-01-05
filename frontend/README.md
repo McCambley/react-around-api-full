@@ -1,6 +1,6 @@
 # 🗝 Around The U.S.
 
-## [Check out this project live!](https://mccambley.github.io/react-around-auth)
+## [Check out this project live!](https://mccambley.github.io/react-around-api-full/)
 
 ## Overview
 

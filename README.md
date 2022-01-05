@@ -1,4 +1,4 @@
-# [Around the U.S.](https://mccambley.students.nomoreparties.site/)
+# [Around the U.S.](https://mccambley.github.io/react-around-api-full/)
 
 This repository contains:
 
@@ -76,4 +76,4 @@ $ npm run start
 
 ---
 
-## [View the project live here! 🎉](https://mccambley.students.nomoreparties.site/)
+## [View the project live here! 🎉](https://mccambley.github.io/react-around-api-full/)
