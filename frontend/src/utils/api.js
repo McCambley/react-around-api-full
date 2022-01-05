@@ -117,8 +117,9 @@ class Api {
 
 // new api with homemade backend
 const api = new Api({
-  // baseUrl: 'http://localhost:3000',
-  baseUrl: 'https://api.mccambley.students.nomoreparties.site',
+  baseUrl: 'https://mccambley-around.herokuapp.com',
+  // baseUrl: 'http://localhost:3000', old
+  // baseUrl: 'https://api.mccambley.students.nomoreparties.site', old
   // authorization: 'd45050bb-6054-461f-a7d7-f299e145a1f0',
 });
 
