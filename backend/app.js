@@ -6,6 +6,8 @@ const { errors } = require('celebrate');
 require('dotenv').config();
 const rateLimit = require('express-rate-limit');
 
+const { MONGO_URI } = process.env;
+
 // routes
 const cards = require('./routes/cards');
 const users = require('./routes/users');
@@ -28,7 +30,7 @@ const limiter = rateLimit({
   message: 'Too many requests have been made to the server, please try again later.',
 });
 
-mongoose.connect('mongodb://localhost:27017/aroundb', {});
+mongoose.connect(MONGO_URI);
 
 app.use(helmet());
 app.use(express.json());
