@@ -1,5 +1,5 @@
 // const BASE_URL = 'http://localhost:3000';
-const BASE_URL = 'https://mccambley-around.herokuapp.com/';
+const BASE_URL = 'https://mccambley-around.herokuapp.com';
 
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
