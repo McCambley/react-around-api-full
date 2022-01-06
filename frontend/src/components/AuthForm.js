@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { login } from '../utils/auth';
 
 export default function AuthForm({
   title,
@@ -12,7 +13,23 @@ export default function AuthForm({
   setPassword,
   formRef,
   handleFormSubmit,
+  setLoggedIn,
 }) {
+  const history = useHistory();
+
+  function handleDemoClick(e) {
+    login('test@around.com', 'testtest')
+      .then((res) => {
+        setLoggedIn(true);
+        setEmail('');
+        setPassword('');
+        history.push('/');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
     <div className="auth">
       <form action="login" className="auth__form" ref={formRef} onSubmit={handleFormSubmit}>
@@ -39,6 +56,9 @@ export default function AuthForm({
         </div>
         <button type="submit" className="auth__button">
           {button}
+        </button>
+        <button type="button" onClick={handleDemoClick} className="auth__button">
+          Try demo
         </button>
         <Link to={path} className="auth__subtitle">
           {subtitle}

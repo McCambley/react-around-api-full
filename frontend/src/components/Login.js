@@ -49,6 +49,7 @@ export default function Login({ setLoggedIn, displayTooltip }) {
       setPassword={setPassword}
       formRef={authForm}
       handleFormSubmit={handleFormSubmit}
+      setLoggedIn={setLoggedIn}
     />
   );
 }
