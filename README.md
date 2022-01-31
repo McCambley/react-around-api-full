@@ -1,9 +1,11 @@
 # [Around the U.S.](https://mccambley.github.io/react-around-api-full/)
 
-This repository contains:
+### This repository contains:
 
 - The **[backend API](https://github.com/McCambley/react-around-api-full/tree/main/backend)** of "Around the U.S." with authorization and registration handled by the back-end server.
 - The **[frontend](https://github.com/McCambley/react-around-api-full/tree/main/frontend)** React Application which uses this API
+
+### Check out a live demo of this project [here](https://youtu.be/z0kQNpBVMcw).
 
 ## 📣 Overview
 
@@ -19,7 +21,7 @@ This repository contains:
 - **Mongoose** wraps MongoDB and manages data with a REST Api
 - **JWT's** secure the authentication process
 
-## ✨ Demo
+## ✨ Screenshots - [Live Demo](https://youtu.be/z0kQNpBVMcw)
 
 ---
 
